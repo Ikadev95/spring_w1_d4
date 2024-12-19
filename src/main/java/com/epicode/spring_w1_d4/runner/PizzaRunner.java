@@ -74,6 +74,12 @@ public class PizzaRunner implements ApplicationRunner {
             ananasPizza.setCalorie(cipollePizza.getCalorie() + ananas.getCalorie());
             ananasPizza.setPrezzo(cipollePizza.getPrezzo() + ananas.getPrezzo());
             pizzaRepo.save(ananasPizza);
+
+            List<Pizza>  pizzeByCalories = pizzaRepo.findByCalorieGreaterThanOrderByNome(320);
+            System.out.println("pizza query by calorie");
+            pizzeByCalories.forEach(System.out::println);
+
+
         }
     }
 }
