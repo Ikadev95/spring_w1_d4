@@ -5,6 +5,7 @@ import com.epicode.spring_w1_d4.entity.Topping;
 import com.epicode.spring_w1_d4.repository.PizzaRepo;
 import com.epicode.spring_w1_d4.repository.ToppingRepo;
 import com.github.javafaker.Faker;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -46,6 +47,7 @@ public class PizzaRunner implements ApplicationRunner {
     @Autowired
     private Topping salame;
 
+    @Transactional
     @Override
     public void run(ApplicationArguments args) throws Exception {
         if (pizzaRepo.count() == 0) {
@@ -75,9 +77,7 @@ public class PizzaRunner implements ApplicationRunner {
             ananasPizza.setPrezzo(cipollePizza.getPrezzo() + ananas.getPrezzo());
             pizzaRepo.save(ananasPizza);
 
-            List<Pizza>  pizzeByCalories = pizzaRepo.findByCalorieGreaterThanOrderByNome(320);
-            System.out.println("pizza query by calorie");
-            pizzeByCalories.forEach(System.out::println);
+
 
 
         }
